@@ -63,28 +63,28 @@ namespace SpaceInvaders
 		{
 			GameOver = false;
 
-			foreach (var Invader in _invaders)
+			foreach (var invader in _invaders)
 			{
-				OnShipChangedEventHandler(new ShipChangedEventArgs(Invader, true));
+				OnShipChangedEventHandler(new ShipChangedEventArgs(invader, true));
 			}
 			_invaders.Clear();
 
-			foreach (var Shot in _playerShot)
+			foreach (var shot in _playerShot)
 			{
-				OnShotMovedEventHandler(new ShotMovedEventArgs(Shot, true));
+				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
 			}
 			_playerShot.Clear();
 
 
-			foreach (var Shot in _invaderShots)
+			foreach (var shot in _invaderShots)
 			{
-				OnShotMovedEventHandler(new ShotMovedEventArgs(Shot, true));
+				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
 			}
 			_invaderShots.Clear();
 
-			foreach (var Point in _stars)
+			foreach (var point in _stars)
 			{
-				OnStarChangedEventHandler(new StarChangedEventArgs(Point, true));
+				OnStarChangedEventHandler(new StarChangedEventArgs(point, true));
 			}
 
 			for (var i = 0; i < InitialStarCount; i++)
@@ -96,14 +96,17 @@ namespace SpaceInvaders
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 			Wave = 0;
 			Lives = 2;
-			//cvbhgfh TODO NEW WAVE
+			
+			NextWave();
 		}
-		/// <summary>
-		/// Method to GET CANCERIUM
-		/// </summary>
+
+
 		public void NextWave()
 		{
-			
+			Wave++;
+			_invaders.Clear();
+			// TODO Add lines of new invaders
+			_invaders.Add(new Invader(new Point(),new Size(10, 10), InvaderType.Bug));
 		}
 
 		public void FireShot()
@@ -171,9 +174,30 @@ namespace SpaceInvaders
 					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
 				}
 			}
+
+			ReturnFire();
+
+			CheckForInvaderCollision();
+
+			CheckForPlayerCollision();
 		}
 
 		private void MoveInvaders()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void CheckForInvaderCollision()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void CheckForPlayerCollision()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void ReturnFire()
 		{
 			throw new NotImplementedException();
 		}
