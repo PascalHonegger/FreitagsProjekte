@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace SpaceInvaders.Ships
 {
-	class StarChangedEventArgs : EventArgs
+	class StarChangedEventArgs : System.EventArgs
 	{
 		public Point Point { get; private set; }
 		public bool Disappeared { get; private set; }

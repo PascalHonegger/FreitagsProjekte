@@ -2,7 +2,7 @@
 
 namespace SpaceInvaders.Ships
 {
-	class ShotMovedEventArgs : EventArgs
+	class ShotMovedEventArgs : System.EventArgs
 	{
 		public IShip ShipUpdated { get; private set; }
 		public bool Killed { get; private set; }
