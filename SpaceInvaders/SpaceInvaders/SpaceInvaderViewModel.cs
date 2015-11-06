@@ -62,6 +62,24 @@ namespace SpaceInvaders
 		{
 			GameOver = false;
 
+			foreach (var Invader in _invaders)
+			{
+				OnShipChangedEventHandler(new ShipChangedEventArgs(Invader, true));
+			}
+			_invaders.Clear();
+
+			foreach (var Shot in _playerShot)
+			{
+				OnShotMovedEventHandler(new ShotMovedEventArgs(Shot, true));
+			}
+			_playerShot.Clear();
+
+
+			foreach (var Shot in _invaderShots)
+			{
+				OnShotMovedEventHandler(new ShotMovedEventArgs(Shot, true));
+			}
+			_invaderShots.Clear();
 		}
 	}
 }

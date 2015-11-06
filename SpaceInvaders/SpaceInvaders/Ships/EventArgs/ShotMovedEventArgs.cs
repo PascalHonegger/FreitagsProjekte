@@ -2,12 +2,12 @@
 {
 	class ShotMovedEventArgs : System.EventArgs
 	{
-		public IShip ShipUpdated { get; private set; }
-		public bool Killed { get; private set; }
-		public ShotMovedEventArgs(IShip shipUpdated, bool killed)
+		public IShot Shot { get; private set; }
+		public bool Disappeared { get; private set; }
+		public ShotMovedEventArgs(IShot shot, bool disappeared)
 		{
-			ShipUpdated = shipUpdated;
-			Killed = killed;
+			Shot = shot;
+			Disappeared = disappeared;
 		}
 	}
 }
