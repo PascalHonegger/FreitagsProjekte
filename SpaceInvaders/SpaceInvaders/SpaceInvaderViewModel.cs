@@ -130,14 +130,18 @@ namespace SpaceInvaders
 		public void Twinkle()
 		{
 			// Add Star
-			if (_random.Next(1, 100) > 50)
+			if (_random.Next(1, 100) > 50 && _stars.Count < InitialStarCount * 1.5)
 			{
-				_stars.Add(_stars.Last());
+				var star = new Point();
+				_stars.Add(star);
+				OnStarChangedEventHandler(new StarChangedEventArgs(star, true));
 			}
 			// Remove Star
-			else if(_stars.Count > InitialStarCount / 100 * 75)
+			else if(_stars.Count > InitialStarCount * 0.75)
 			{
-				_stars.Remove(_stars.Last());
+				var star = _stars.Last();
+                _stars.Remove(star);
+				OnStarChangedEventHandler(new StarChangedEventArgs(star, false));
 			}
 		}
 	}
