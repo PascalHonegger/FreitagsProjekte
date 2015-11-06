@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace SpaceInvaders.Ships
 {
-	class Shot
+	class Shot : IShot
 	{
 		public const double ShotPixelsPerSecond = 95;
 

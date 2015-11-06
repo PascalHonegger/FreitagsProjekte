@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SpaceInvaders.Ships
+﻿namespace SpaceInvaders.Ships.EventArgs
 {
 	class ShotMovedEventArgs : System.EventArgs
 	{

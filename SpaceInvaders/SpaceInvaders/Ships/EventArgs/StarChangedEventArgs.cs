@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
-namespace SpaceInvaders.Ships
+namespace SpaceInvaders.Ships.EventArgs
 {
 	class StarChangedEventArgs : System.EventArgs
 	{

@@ -58,6 +58,7 @@
     <Compile Include="Ships\EventArgs\ShipChangedEventArgs.cs" />
     <Compile Include="Ships\Invader\InvaderType.cs" />
     <Compile Include="Ships\IShip.cs" />
+    <Compile Include="Ships\IShot.cs" />
     <Compile Include="Ships\Player\IPlayer.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Ships\Invader\IInvader.cs" />
