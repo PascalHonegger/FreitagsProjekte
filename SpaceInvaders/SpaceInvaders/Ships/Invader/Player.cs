@@ -5,7 +5,9 @@ namespace SpaceInvaders.Ships.Invader
 {
 	internal class Player : ShipBase
 	{
-		public Player(Point location, Size size) : base(location, size)
+		static readonly Size PlayerSize = new Size(25, 15);
+		private const double Speed = 10;
+		public Player(Point location) : base(location, PlayerSize)
 		{
 		}
 

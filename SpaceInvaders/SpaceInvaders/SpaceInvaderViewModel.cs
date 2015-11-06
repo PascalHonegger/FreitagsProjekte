@@ -81,6 +81,22 @@ namespace SpaceInvaders
 				OnShotMovedEventHandler(new ShotMovedEventArgs(Shot, true));
 			}
 			_invaderShots.Clear();
+
+			foreach (var Point in _stars)
+			{
+				OnStarChangedEventHandler(new StarChangedEventArgs(Point, true));
+			}
+
+			for (int i = 0; i < InitialStarCount; i++)
+			{
+				_stars.Add(new Point()); //TODO RANDOM KORDINATES
+
+			}
+
+			_player = new Player(new Point());
+			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
+			Wave = 0;
+			//Lifes = 2;
 		}
 
 		public void FireShot()
