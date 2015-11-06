@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using SpaceInvaders.Ships;
+using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
 using SpaceInvaders.Ships.Player;
 
@@ -35,6 +36,12 @@ namespace SpaceInvaders
 		public void EndGame()
 		{
 			GameOver = true;
+		}
+
+		public void StartGame()
+		{
+			GameOver = false;
+
 		}
 	}
 }
