@@ -87,10 +87,9 @@ namespace SpaceInvaders
 				OnStarChangedEventHandler(new StarChangedEventArgs(Point, true));
 			}
 
-			for (int i = 0; i < InitialStarCount; i++)
+			for (var i = 0; i < InitialStarCount; i++)
 			{
 				_stars.Add(new Point()); //TODO RANDOM KORDINATES
-
 			}
 
 			_player = new Player(new Point());
@@ -104,7 +103,7 @@ namespace SpaceInvaders
 			if (_playerShot.Count < MaximumPlayerShots)
 			{
 				var shot = new Shot(_player.Location, Direction.Up);
-                _playerShot.Add(shot);
+				_playerShot.Add(shot);
 				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
 			}
 		}
@@ -112,19 +111,53 @@ namespace SpaceInvaders
 		public void Twinkle()
 		{
 			// Add Star
-			if (_random.Next(1, 100) > 50 && _stars.Count < InitialStarCount * 1.5)
+			if (_random.Next(1, 100) > 50 && _stars.Count < InitialStarCount*1.5)
 			{
 				var star = new Point();
 				_stars.Add(star);
 				OnStarChangedEventHandler(new StarChangedEventArgs(star, true));
 			}
 			// Remove Star
-			else if(_stars.Count > InitialStarCount * 0.75)
+			else if (_stars.Count > InitialStarCount*0.75)
 			{
 				var star = _stars.Last();
-                _stars.Remove(star);
+				_stars.Remove(star);
 				OnStarChangedEventHandler(new StarChangedEventArgs(star, false));
 			}
+		}
+
+		public void Update()
+		{
+			if (_invaders.Count == 0)
+			{
+				NextWave();
+			}
+
+			if (PlayerDying)
+			{
+				MoveInvaders();
+			}
+
+			if (!PlayerDying)
+			{
+				foreach (var shot in _invaderShots)
+				{
+					shot.Move();
+					// TODO Remove shots if they are out of bounds
+					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
+				}
+				foreach (var shot in _playerShot)
+				{
+					shot.Move();
+					// TODO Remove shots if they are out of bounds
+					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
+				}
+			}
+		}
+
+		private void MoveInvaders()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
