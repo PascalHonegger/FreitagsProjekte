@@ -92,8 +92,10 @@ namespace SpaceInvaders
 
 			}
 
-			_player = new Player();
+			_player = new Player(new Point());
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
+			Wave = 0;
+			//Lifes = 2;
 		}
 
 		public void FireShot()
