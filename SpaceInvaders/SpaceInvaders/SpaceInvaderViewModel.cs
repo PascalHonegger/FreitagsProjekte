@@ -96,7 +96,15 @@ namespace SpaceInvaders
 			_player = new Player(new Point());
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 			Wave = 0;
-			//Lifes = 2;
+			Lives = 2;
+			//cvbhgfh TODO NEW WAVE
+		}
+		/// <summary>
+		/// Method to GET CANCERIUM
+		/// </summary>
+		public void NextWave()
+		{
+			
 		}
 
 		public void FireShot()
@@ -107,6 +115,16 @@ namespace SpaceInvaders
                 _playerShot.Add(shot);
 				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
 			}
+		}
+
+		public void MovePlayer(Direction direction)
+		{
+			if (PlayerDying)
+			{
+				return;
+			}
+			_player.Move(direction);
+			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 		}
 
 		public void Twinkle()
