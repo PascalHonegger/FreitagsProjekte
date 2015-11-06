@@ -91,9 +91,25 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\invader1.psd" />
+    <None Include="Resources\invader2.psd" />
+    <None Include="Resources\invader3.psd" />
+    <None Include="Resources\invader4.psd" />
+    <None Include="Resources\invader5.psd" />
+    <None Include="Resources\leTank.psd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\invader1.png" />
+    <Resource Include="Resources\invader2.png" />
+    <Resource Include="Resources\invader3.png" />
+    <Resource Include="Resources\invader4.png" />
+    <Resource Include="Resources\invader5.png" />
+    <Resource Include="Resources\leTank.png" />
+    <Resource Include="Resources\Mothership_SC2_Art1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
