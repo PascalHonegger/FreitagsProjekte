@@ -1,6 +1,6 @@
 ﻿namespace SpaceInvaders.Ships.Invader
 {
-	internal interface IInvader
+	internal interface IInvader: IShip
 	{
 
 	}
