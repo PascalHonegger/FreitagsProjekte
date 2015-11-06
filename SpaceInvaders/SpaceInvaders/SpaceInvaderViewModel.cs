@@ -95,5 +95,15 @@ namespace SpaceInvaders
 			_player = new Player();
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 		}
+
+		public void FireShot()
+		{
+			if (_playerShot.Count < MaximumPlayerShots)
+			{
+				var shot = new Shot(_player.Location, Direction.Up);
+                _playerShot.Add(shot);
+				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
+			}
+		}
 	}
 }
