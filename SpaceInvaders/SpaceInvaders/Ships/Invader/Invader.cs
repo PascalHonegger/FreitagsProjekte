@@ -1,21 +1,26 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace SpaceInvaders.Ships.Invader
 {
-	internal class Invader : IInvader
+	internal class Invader : ShipBase
 	{
-		public Invader(InvaderType invaderType)
+		public Invader(Point location, Size size, InvaderType invaderType) : base(location, size)
 		{
 			InvaderType = invaderType;
+			Location = location;
+			Size = size;
 		}
 
-		public InvaderType InvaderType { get;private set; }
+		public InvaderType InvaderType { get; private set; }
 		public Rect Area { get; }
+
 		public Point Location { get; }
 		public Size Size { get; }
-		public void Move(Direction direction)
+
+		public override void Move(Direction direction)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 	}
 }

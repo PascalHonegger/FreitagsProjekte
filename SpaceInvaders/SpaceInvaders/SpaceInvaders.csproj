@@ -59,11 +59,9 @@
     <Compile Include="Ships\Invader\InvaderType.cs" />
     <Compile Include="Ships\IShip.cs" />
     <Compile Include="Ships\IShot.cs" />
-    <Compile Include="Ships\Player\IPlayer.cs" />
     <Compile Include="Direction.cs" />
-    <Compile Include="Ships\Invader\IInvader.cs" />
     <Compile Include="Ships\Invader\Invader.cs" />
-    <Compile Include="Ships\Player\Player.cs" />
+    <Compile Include="Ships\Invader\Player.cs" />
     <Compile Include="Ships\ShipBase.cs" />
     <Compile Include="Ships\EventArgs\ShotMovedEventArgs.cs" />
     <Compile Include="Ships\EventArgs\StarChangedEventArgs.cs" />

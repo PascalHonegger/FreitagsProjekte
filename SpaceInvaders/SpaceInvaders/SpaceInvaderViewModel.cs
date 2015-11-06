@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
-using SpaceInvaders.Ships.Player;
 
 namespace SpaceInvaders
 {
@@ -13,15 +13,15 @@ namespace SpaceInvaders
 		public const int MaximumPlayerShots = 3;
 		public const int InitialStarCount = 50;
 		public static readonly Size PlayAreaSize = new Size(400, 300);
-		private readonly List<IInvader> _invaders = new List<IInvader>();
+		private readonly List<Invader> _invaders = new List<Invader>();
 		private readonly List<IShot> _invaderShots = new List<IShot>();
 		private readonly List<IShot> _playerShot = new List<IShot>();
 		private readonly Random _random = new Random();
 		private readonly List<Point> _stars = new List<Point>();
-		private Direction _invaderDirectio = Direction.Left;
+		private Direction _invaderDirection = Direction.Left;
 		private bool _justMovedDown = false;
 		private DateTime _lastUpdated = DateTime.MinValue;
-		private IPlayer _player;
+		private Player _player;
 		private DateTime? _playerDied = null;
 
 		public SpaceInvaderViewModel()
@@ -31,6 +31,7 @@ namespace SpaceInvaders
 
 		public int Score { get; private set; }
 		public int Wave { get; private set; }
+		public int Lives { get; private set; }
 		public bool GameOver { get; private set; }
 		public bool PlayerDying => _playerDied.HasValue;
 
@@ -89,6 +90,20 @@ namespace SpaceInvaders
 				var shot = new Shot(_player.Location, Direction.Up);
                 _playerShot.Add(shot);
 				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
+			}
+		}
+
+		public void Twinkle()
+		{
+			// Add Star
+			if (_random.Next(1, 100) > 50)
+			{
+				_stars.Add(_stars.Last());
+			}
+			// Remove Star
+			else if(_stars.Count > InitialStarCount / 100 * 75)
+			{
+				_stars.Remove(_stars.Last());
 			}
 		}
 	}
