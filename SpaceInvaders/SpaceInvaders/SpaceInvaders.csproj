@@ -55,6 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ships\IShip.cs" />
+    <Compile Include="Ships\Player\IPlayer.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="Ships\Invader\IInvader.cs" />
+    <Compile Include="Ships\Invader\InvaderBase.cs" />
+    <Compile Include="Ships\Invader\InvaderBacteria.cs" />
+    <Compile Include="Ships\Invader\InvaderBug.cs" />
+    <Compile Include="Ships\Invader\InvaderAlien.cs" />
+    <Compile Include="Ships\Invader\InvaderCoffee.cs" />
+    <Compile Include="Ships\Invader\InvaderNinja.cs" />
+    <Compile Include="Ships\Player\Player.cs" />
+    <Compile Include="Ships\ShipBase.cs" />
+    <Compile Include="SpaceInvaderViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
