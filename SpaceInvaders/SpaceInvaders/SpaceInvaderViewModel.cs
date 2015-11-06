@@ -57,5 +57,15 @@ namespace SpaceInvaders
 		{
 			StarChangedEventHandler?.Invoke(this, e);
 		}
+
+		public void FireShot()
+		{
+			if (_playerShot.Count < MaximumPlayerShots)
+			{
+				var shot = new Shot(_player.Location, Direction.Up);
+                _playerShot.Add(shot);
+				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
+			}
+		}
 	}
 }
