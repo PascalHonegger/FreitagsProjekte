@@ -16,7 +16,7 @@ namespace SpaceInvaders
 		private const int InitialStarCount = 50;
 		private const int PlayAreaWidth = 400;
 		private const int PlayAreaHeight = 300;
-		public static readonly Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
+		public Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
 
 		private static readonly Point PlayerStartPoint = new Point(); //TODO
 		private readonly List<IShot> _invaderShots = new List<IShot>();
@@ -36,7 +36,7 @@ namespace SpaceInvaders
 			EndGame();
 		}
 
-		private Timer UpdateTimer { get; } = new Timer(1000);
+		private Timer UpdateTimer { get; } = new Timer(100);
 
 		private int Score { get; set; }
 		private int Wave { get; set; }
