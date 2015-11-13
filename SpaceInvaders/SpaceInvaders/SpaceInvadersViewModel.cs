@@ -25,8 +25,9 @@ namespace SpaceInvaders
 		private readonly List<Point> _stars = new List<Point>();
 		private Direction _invaderDirection = Direction.Left;
 		private List<Invader> _invaders = new List<Invader>();
-		private bool _justMovedDown = false;
-		private DateTime _lastUpdated = DateTime.MinValue;
+		//TODO what are these for??!?!?!?
+		/*private bool _justMovedDown = false;
+		private DateTime _lastUpdated = DateTime.MinValue;*/
 		private Player _player;
 		private DateTime? _playerDied = null;
 
@@ -37,11 +38,11 @@ namespace SpaceInvaders
 
 		private Timer UpdateTimer { get; } = new Timer(1000);
 
-		public int Score { get; private set; }
-		public int Wave { get; private set; }
-		public int Lives { get; private set; }
-		public bool GameOver { get; private set; }
-		public bool PlayerDying => _playerDied.HasValue;
+		private int Score { get; set; }
+		private int Wave { get; set; }
+		private int Lives { get; set; }
+		private bool GameOver { get; set; }
+		private bool PlayerDying => _playerDied.HasValue;
 
 		public event EventHandler<ShipChangedEventArgs> ShipChangedEventHandler;
 		public event EventHandler<ShotMovedEventArgs> ShotMovedEventHandler;
@@ -254,6 +255,8 @@ namespace SpaceInvaders
 			MoveInvaders();
 
 			ReturnFire();
+
+			Twinkle();
 		}
 
 		private static bool IsOutOfBounds(Point shot)
