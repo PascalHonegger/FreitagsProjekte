@@ -16,10 +16,5 @@ namespace SpaceInvaders.Ships.Invader
 		}
 
 		private InvaderType InvaderType { get; set; }
-
-		public override void Move(Direction direction)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

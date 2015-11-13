@@ -14,10 +14,5 @@ namespace SpaceInvaders.Ships.Invader
 		public Player(Point location) : base(location, PlayerSize, PlayerTexutre)
 		{
 		}
-
-		public override void Move(Direction direction)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

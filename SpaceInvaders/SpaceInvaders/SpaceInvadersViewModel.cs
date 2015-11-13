@@ -291,8 +291,7 @@ namespace SpaceInvaders
 					}
 				}
 
-				if (FindCollisions(ship.Location, ship.Size.Width, ship.Size.Height, _player.Location, _player.Size.Width,
-					_player.Size.Height))
+				if (FindCollisions(ship, _player))
 				{
 					OnShipChangedEventHandler(new ShipChangedEventArgs(ship, true));
 				}
@@ -301,8 +300,10 @@ namespace SpaceInvaders
 
 		private bool FindCollisions(IShip ship, IShot shot)
 		{
-			return FindCollisions(ship.Location, ship.Size.Width, ship.Size.Height, shot.Location, Shot.ShotSize.Width,
-				Shot.ShotSize.Height);
+			var rect1 = new Rect(ship.Location.X, ship.Location.Y, ship.Size.Width, ship.Size.Height);
+			var rect2 = new Rect(shot.Location.X, shot.Location.Y, Shot.ShotSize.Width, Shot.ShotSize.Height);
+
+			return rectsOverlap(rect1, rect2);
 		}
 
 		private void CheckForPlayerCollision()
@@ -322,6 +323,11 @@ namespace SpaceInvaders
 			{
 				FireShot(invader, Direction.Down);
 			}
+		}
+
+		private bool FindCollisions(IShip ship1, IShip ship2)
+		{
+			return rectsOverlap(ship1.Area, ship2.Area);
 		}
 
 		private bool FindCollisions(Point point1, double width1, double height1, Point point2, double width2, double height2)

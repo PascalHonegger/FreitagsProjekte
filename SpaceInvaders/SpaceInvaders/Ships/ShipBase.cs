@@ -15,12 +15,16 @@ namespace SpaceInvaders.Ships
 			Texture = texture;
 		}
 
-		public Point Location { get; protected set; }
+		public Point Location { get; }
 
 		public Size Size { get; }
 
 		public Rect Area => new Rect(Location, Size);
-		public abstract void Move(Direction direction);
+
+		public void Move(Direction direction)
+		{
+			throw new NotImplementedException();
+		}
 		public BitmapSource Texture { get; }
 
 		public void OnShipChanged(object sender, ShipChangedEventArgs e)
