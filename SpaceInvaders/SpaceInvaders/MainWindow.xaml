@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SpaceInvaders"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid Focusable="True" KeyDown="UIElement_OnKeyDown">
         
     </Grid>
 </Window>

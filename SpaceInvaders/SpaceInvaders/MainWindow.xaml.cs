@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace SpaceInvaders
 {
@@ -7,9 +8,23 @@ namespace SpaceInvaders
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		readonly SpaceInvaderViewModel _viewModel;
 		public MainWindow()
 		{
 			InitializeComponent();
+			DataContext = _viewModel = new SpaceInvaderViewModel();
+		}
+
+		private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.A || e.Key == Key.Left)
+			{
+				_viewModel.MovePlayer(Direction.Left);
+			}
+			else if (e.Key == Key.D || e.Key == Key.Right)
+			{
+				_viewModel.MovePlayer(Direction.Right);
+			}
 		}
 	}
 }

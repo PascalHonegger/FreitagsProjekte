@@ -191,6 +191,8 @@ namespace SpaceInvaders
 			// Add Star
 			if (_random.Next(1, 100) > 50 && _stars.Count < InitialStarCount*1.5)
 			{
+				/*var _ran = new Random();
+				var star = new Point(_ran.Next());*/
 				var star = new Point();
 				_stars.Add(star);
 				OnStarChangedEventHandler(new StarChangedEventArgs(star, true));
@@ -204,7 +206,7 @@ namespace SpaceInvaders
 			}
 		}
 
-		public void Update()
+		private void Update()
 		{
 			if (_invaders.Count == 0)
 			{
@@ -230,13 +232,13 @@ namespace SpaceInvaders
 				}
 			}
 
-			ReturnFire();
-
 			CheckForInvaderCollision();
 
 			CheckForPlayerCollision();
 
 			MoveInvaders();
+
+			ReturnFire();
 		}
 
 		private static bool IsOutOfBounds(Point shot)
@@ -286,7 +288,10 @@ namespace SpaceInvaders
 
 		private void ReturnFire()
 		{
-			throw new NotImplementedException();
+			foreach (var invader in _invaders)
+			{
+				invader.
+			}
 		}
 
 		private bool FindCollisions(IShip invader, IShot shot)

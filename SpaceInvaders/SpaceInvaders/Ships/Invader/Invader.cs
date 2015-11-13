@@ -14,7 +14,7 @@ namespace SpaceInvaders.Ships.Invader
 			Size = size;
 		}
 
-		public InvaderType InvaderType { get; private set; }
+		private InvaderType InvaderType { get; set; }
 
 		public override void Move(Direction direction)
 		{
