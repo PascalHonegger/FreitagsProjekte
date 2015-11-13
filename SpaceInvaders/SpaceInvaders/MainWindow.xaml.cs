@@ -35,5 +35,10 @@ namespace SpaceInvaders
 		{
 			SpaceInvaders.StartGame();
 		}
+
+		private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+
+		}
 	}
 }

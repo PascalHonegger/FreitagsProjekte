@@ -1,4 +1,4 @@
-﻿namespace SpaceInvaders.Ships.EventArgs
+﻿	namespace SpaceInvaders.Ships.EventArgs
 {
 	class ShipChangedEventArgs
 	{
