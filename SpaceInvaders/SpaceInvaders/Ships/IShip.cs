@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace SpaceInvaders.Ships
 {
@@ -9,5 +10,6 @@ namespace SpaceInvaders.Ships
 		Size Size { get; }
 
 		void Move(Direction direction);
+		BitmapSource Texture { get; }
 	}
 }

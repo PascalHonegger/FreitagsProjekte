@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using SpaceInvaders.Ships.EventArgs;
 
 namespace SpaceInvaders.Ships.Invader
@@ -8,7 +9,9 @@ namespace SpaceInvaders.Ships.Invader
 	{
 		static readonly Size PlayerSize = new Size(25, 15);
 		private const double Speed = 10;
-		public Player(Point location) : base(location, PlayerSize)
+		//TODO Import Image
+		private static readonly BitmapSource PlayerTexutre = new BitmapImage();
+		public Player(Point location) : base(location, PlayerSize, PlayerTexutre)
 		{
 		}
 

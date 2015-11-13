@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
@@ -128,7 +129,7 @@ namespace SpaceInvaders
 			var currentY = Invader.Width*1.4;
 			for (var i = 0; i < 16; i++)
 			{
-				var invader = new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType());
+				var invader = new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType(), new BitmapImage());
 				ShipChangedEventHandler += invader.OnShipChanged;
 				attackers.Add(invader);
 				currentX += Invader.Width*2.4;
