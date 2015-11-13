@@ -25,6 +25,10 @@ namespace SpaceInvaders
 			{
 				_viewModel.MovePlayer(Direction.Right);
 			}
+			else if(e.Key == Key.Space)
+			{
+				_viewModel.FireShotPlayer();
+			}
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)

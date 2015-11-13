@@ -1,6 +1,5 @@
-﻿using System;
-using System.Windows;
-using SpaceInvaders.Ships.EventArgs;
+﻿using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace SpaceInvaders.Ships.Invader
 {
@@ -9,17 +8,11 @@ namespace SpaceInvaders.Ships.Invader
 		public const int Width = 10;
 		public const int Height = 10;
 		private static readonly Size InvaderSize = new Size(Width, Height);
-		public Invader(Point location, InvaderType invaderType) : base(location, InvaderSize)
+		public Invader(Point location, InvaderType invaderType, BitmapSource texture) : base(location, InvaderSize, texture)
 		{
 			InvaderType = invaderType;
-			Location = location;
 		}
 
 		private InvaderType InvaderType { get; set; }
-
-		public override void Move(Direction direction)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
