@@ -9,7 +9,8 @@ namespace SpaceInvaders.Ships.Invader
 	{
 		public const int Width = 10;
 		public const int Height = 10;
-		public Invader(Point location, Size size, InvaderType invaderType, BitmapSource texture) : base(location, size, texture)
+		private static readonly Size InvaderSize = new Size(Width, Height);
+		public Invader(Point location, InvaderType invaderType, BitmapSource texture) : base(location, InvaderSize, texture)
 		{
 			InvaderType = invaderType;
 		}

@@ -33,15 +33,13 @@ namespace SpaceInvaders
 			EndGame();
 		}
 
-		private Timer UpdateTimer { get; set; }
+		private Timer UpdateTimer { get; } = new Timer(1000);
 
 		public int Score { get; private set; }
 		public int Wave { get; private set; }
 		public int Lives { get; private set; }
 		public bool GameOver { get; private set; }
 		public bool PlayerDying => _playerDied.HasValue;
-
-		private int Level { get; } = 1;
 
 		public event EventHandler<ShipChangedEventArgs> ShipChangedEventHandler;
 		public event EventHandler<ShotMovedEventArgs> ShotMovedEventHandler;
@@ -50,6 +48,7 @@ namespace SpaceInvaders
 		private void EndGame()
 		{
 			GameOver = true;
+			UpdateTimer.Stop();
 		}
 
 		private void OnShipChangedEventHandler(ShipChangedEventArgs e)
@@ -105,10 +104,10 @@ namespace SpaceInvaders
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 			Wave = 0;
 			Lives = 2;
+			Score = 0;
 
 			NextWave();
 
-			UpdateTimer = new Timer(1000);
 			UpdateTimer.Elapsed += (sender, args) => { Update(); };
 			UpdateTimer.Start();
 		}
@@ -129,7 +128,7 @@ namespace SpaceInvaders
 			var currentY = Invader.Width*1.4;
 			for (var i = 0; i < 16; i++)
 			{
-				var invader = new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType(), new BitmapImage());
+				var invader = new Invader(new Point(currentX, currentY), GetInvaderType(), new BitmapImage());
 				ShipChangedEventHandler += invader.OnShipChanged;
 				attackers.Add(invader);
 				currentX += Invader.Width*2.4;
@@ -146,7 +145,7 @@ namespace SpaceInvaders
 		private InvaderType GetInvaderType()
 		{
 			InvaderType type;
-			switch (Level%6)
+			switch (Wave%6)
 			{
 				case 0:
 					type = InvaderType.Mothership;
@@ -178,7 +177,7 @@ namespace SpaceInvaders
 			{
 				var shot = new Shot(_player.Location, Direction.Up);
 				_playerShot.Add(shot);
-				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
+				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
 			}
 		}
 
