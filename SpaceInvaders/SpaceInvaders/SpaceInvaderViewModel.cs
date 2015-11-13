@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Windows;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
@@ -257,17 +258,34 @@ namespace SpaceInvaders
 
 		private void CheckForInvaderCollision()
 		{
-			throw new NotImplementedException();
+			foreach (var ship in _invaders.ToList())
+			{
+				foreach (var shot in _playerShot)
+				{
+
+				}
+			}
 		}
 
 		private void CheckForPlayerCollision()
 		{
-			throw new NotImplementedException();
+			foreach (var shot in _invaderShots)
+			{
+				if (FindCollisions(_player, shot))
+				{
+					OnShipChangedEventHandler(new ShipChangedEventArgs(_player, true));
+				}
+			}
 		}
 
 		private void ReturnFire()
 		{
 			throw new NotImplementedException();
+		}
+
+		private bool FindCollisions(IShip invader, IShot shot)
+		{
+			
 		}
 	}
 }
