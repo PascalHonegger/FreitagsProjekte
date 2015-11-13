@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Timers;
 using System.Windows;
 using SpaceInvaders.Ships;
@@ -268,9 +267,23 @@ namespace SpaceInvaders
 			{
 				foreach (var shot in _playerShot)
 				{
+					if (FindCollisions(ship, shot))
+					{
+						OnShipChangedEventHandler(new ShipChangedEventArgs(ship, true));
+					}
+				}
 
+				if (FindCollisions(ship.Location, ship.Size.Width,ship.Size.Height, _player.Location, _player.Size.Width, _player.Size.Height))
+				{
+					OnShipChangedEventHandler(new ShipChangedEventArgs(ship, true));
 				}
 			}
+		}
+
+		private bool FindCollisions(IShip ship, IShot shot)
+		{
+			return FindCollisions(ship.Location, ship.Size.Width, ship.Size.Height, shot.Location, Shot.ShotSize.Width,
+				Shot.ShotSize.Height);
 		}
 
 		private void CheckForPlayerCollision()
@@ -289,9 +302,20 @@ namespace SpaceInvaders
 			throw new NotImplementedException();
 		}
 
-		private bool FindCollisions(IShip invader, IShot shot)
+		private bool FindCollisions(Point point1, double width1, double height1, Point point2, double width2, double height2)
 		{
-			
+			var rect1 = new Rect(point1.X, point1.Y, width1, height1);
+			var rect2 = new Rect(point2.X, point2.Y, width2, height2);
+
+			return rectsOverlap(rect1, rect2);
+		}
+
+		private bool rectsOverlap(Rect rect1, Rect rect2)
+		{
+			rect1.Intersect(rect2);
+			if (rect1.Width > 0 || rect1.Height > 0)
+				return true;
+			return false;
 		}
 	}
 }
