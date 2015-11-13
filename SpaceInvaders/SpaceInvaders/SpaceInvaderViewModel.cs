@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using System.Windows;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
@@ -29,7 +30,12 @@ namespace SpaceInvaders
 		public SpaceInvaderViewModel()
 		{
 			EndGame();
+			UpdateTimer = new Timer(1000);
+			UpdateTimer.Elapsed += (sender, args) => { Update();};
+			UpdateTimer.Start();
 		}
+
+		private Timer UpdateTimer { get; }
 
 		public int Score { get; private set; }
 		public int Wave { get; private set; }
