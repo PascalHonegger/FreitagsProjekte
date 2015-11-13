@@ -14,5 +14,7 @@ namespace SpaceInvaders.Ships.Invader
 		}
 
 		private InvaderType InvaderType { get; set; }
+
+		public override double Speed => 10;
 	}
 }

@@ -8,32 +8,32 @@ namespace SpaceInvaders
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		readonly SpaceInvadersViewModel _viewModel;
+		private SpaceInvadersViewModel SpaceInvaders => DataContext as SpaceInvadersViewModel;
 		public MainWindow()
 		{
 			InitializeComponent();
-			DataContext = _viewModel = new SpaceInvadersViewModel();
+			DataContext = new SpaceInvadersViewModel();
 		}
 
 		private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.A || e.Key == Key.Left)
 			{
-				_viewModel.MovePlayer(Direction.Left);
+				SpaceInvaders.MovePlayer(Direction.Left);
 			}
 			else if (e.Key == Key.D || e.Key == Key.Right)
 			{
-				_viewModel.MovePlayer(Direction.Right);
+				SpaceInvaders.MovePlayer(Direction.Right);
 			}
 			else if(e.Key == Key.Space)
 			{
-				_viewModel.FireShotPlayer();
+				SpaceInvaders.FireShotPlayer();
 			}
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
 		{
-			_viewModel.StartGame();
+			SpaceInvaders.StartGame();
 		}
 	}
 }

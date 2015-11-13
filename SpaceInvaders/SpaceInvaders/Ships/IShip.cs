@@ -10,6 +10,6 @@ namespace SpaceInvaders.Ships
 		Size Size { get; }
 
 		void Move(Direction direction);
-		BitmapSource Texture { get; }
+		BitmapSource Texture { get;}
 	}
 }
