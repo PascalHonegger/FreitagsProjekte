@@ -16,7 +16,7 @@ namespace SpaceInvaders
 		private const int PlayAreaWidth = 400;
 		private const int PlayAreaHeight = 300;
 		public static readonly Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
-		private readonly List<Invader> _invaders = new List<Invader>();
+		private List<Invader> _invaders = new List<Invader>();
 		private readonly List<IShot> _invaderShots = new List<IShot>();
 		private readonly List<IShot> _playerShot = new List<IShot>();
 		private readonly Random _random = new Random();
@@ -103,25 +103,27 @@ namespace SpaceInvaders
 			NextWave();
 		}
 
-
 		private void NextWave()
 		{
 			Wave++;
-			_invaders.Clear();
-			var attackers = CreateNewAttackWave();
-			_invaders.AddRange(attackers);
-			// TODO Add lines of new invaders
+			_invaders = CreateNewAttackWave().ToList();
 		}
 
 		private IEnumerable<Invader> CreateNewAttackWave()
 		{
 			IList<Invader> attackers = new List<Invader>();
 
-			double currentX = 0;
-			double currentY = 0;
-			for (int i = 0; i < 16; i++)
+			var currentX = Invader.Height * 1.4;
+			var currentY = Invader.Width * 1.4;
+			for (var i = 0; i < 16; i++)
 			{
 				attackers.Add(new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType()));
+				currentX += Invader.Width * 2.4;
+				if (IsOutOfBounds(new Point(currentX * 2.4, currentY)))
+				{
+					currentX = Invader.Height * 1.4;
+					currentY += Invader.Height + Invader.Height*1.4;
+				}
 			}
 
 			return attackers;
