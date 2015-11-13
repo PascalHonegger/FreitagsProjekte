@@ -7,10 +7,9 @@ namespace SpaceInvaders.Ships.Invader
 	{
 		public Invader(Point location, Size size, InvaderType invaderType) : base(location, size)
 		{
-			InvaderType = invaderType;
+			Score = (int) (InvaderType = invaderType);
 			Location = location;
 			Size = size;
-			Score = (int) invaderType;
 		}
 
 		public InvaderType InvaderType { get; private set; }

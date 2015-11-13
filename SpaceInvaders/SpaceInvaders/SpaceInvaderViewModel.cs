@@ -10,9 +10,11 @@ namespace SpaceInvaders
 {
 	internal class SpaceInvaderViewModel
 	{
-		public const int MaximumPlayerShots = 3;
-		public const int InitialStarCount = 50;
-		public static readonly Size PlayAreaSize = new Size(400, 300);
+		private const int MaximumPlayerShots = 3;
+		private const int InitialStarCount = 50;
+		private const int PlayAreaWidth = 400;
+		private const int PlayAreaHeight = 300;
+		public static readonly Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
 		private readonly List<Invader> _invaders = new List<Invader>();
 		private readonly List<IShot> _invaderShots = new List<IShot>();
 		private readonly List<IShot> _playerShot = new List<IShot>();
@@ -164,14 +166,12 @@ namespace SpaceInvaders
 				foreach (var shot in _invaderShots)
 				{
 					shot.Move();
-					// TODO Remove shots if they are out of bounds
-					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
+					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot)));
 				}
 				foreach (var shot in _playerShot)
 				{
 					shot.Move();
-					// TODO Remove shots if they are out of bounds
-					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
+					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot)));
 				}
 			}
 
@@ -182,9 +182,21 @@ namespace SpaceInvaders
 			CheckForPlayerCollision();
 		}
 
+		private static bool IsOutOfBounds(IShot shot)
+		{
+			return Math.Abs(shot.Location.X - PlayAreaHeight) < 0.5 || Math.Abs(shot.Location.X) < 0.5;
+		}
+
 		private void MoveInvaders()
 		{
-			throw new NotImplementedException();
+			/*if (_invaders.All(invader => invader.Location.X < 0 || invader.Location.X > MAX)
+			{
+				
+			}*/
+			foreach (var invader in _invaders)
+			{
+				invader.Move(_invaderDirection);
+			}
 		}
 
 		private void CheckForInvaderCollision()

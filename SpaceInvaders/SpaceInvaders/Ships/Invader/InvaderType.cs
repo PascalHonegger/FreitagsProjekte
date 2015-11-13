@@ -1,6 +1,6 @@
 ﻿namespace SpaceInvaders.Ships.Invader
 {
-	enum InvaderType
+	internal enum InvaderType
 	{
 		Bug = 40,
 		Saucer = 10,
