@@ -45,7 +45,7 @@ namespace SpaceInvaders
 
 		private void PlayArea_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			UpdatePlayAreaSize(playArea.RenderSize);
+			UpdatePlayAreaSize(PlayArea.RenderSize);
 		}
 
 		private void UpdatePlayAreaSize(Size newPlayAreaSize)
@@ -57,17 +57,17 @@ namespace SpaceInvaders
 				targetWidth = newPlayAreaSize.Height*4/3;
 				targetHeight = newPlayAreaSize.Height;
 				var leftrightMargin = (newPlayAreaSize.Width - targetWidth)/2;
-				playArea.Margin = new Thickness(leftrightMargin, 0, leftrightMargin, 0);
+				PlayArea.Margin = new Thickness(leftrightMargin, 0, leftrightMargin, 0);
 			}
 			else
 			{
 				targetHeight = newPlayAreaSize.Width*3/4;
 				targetWidth = newPlayAreaSize.Width;
 				var topBottomMargin = (newPlayAreaSize.Height - targetHeight)/2;
-				playArea.Margin = new Thickness(0, topBottomMargin, 0, topBottomMargin);
+				PlayArea.Margin = new Thickness(0, topBottomMargin, 0, topBottomMargin);
 			}
-			playArea.Width = targetWidth;
-			playArea.Height = targetHeight;
+			PlayArea.Width = targetWidth;
+			PlayArea.Height = targetHeight;
 			ViewModel.PlayAreaSize = new Size(targetWidth, targetHeight);
 		}
 	}
