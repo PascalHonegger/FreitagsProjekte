@@ -16,9 +16,9 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SpaceInvaders.SpaceInvadersViewModel" Collapsed="true">
-    <Position X="7" Y="2.5" Width="1.5" />
+    <Position X="2.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABUAkACAhIBAoQoACAAAKIIpAEGBCAADhQAICAARhBE=</HashCode>
+      <HashCode>ABUAkACAhIBAoQoACAAAKIIpAEGBCAAChQAICAARhBE=</HashCode>
       <FileName>SpaceInvadersViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,14 +55,14 @@
       <FileName>Ships\EventArgs\StarChangedEventArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SpaceInvaders.Ships.Invader.Invader" Collapsed="true">
+  <Class Name="SpaceInvaders.Ships.Invader.Invader">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABIgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAQABIgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ships\Invader\Invader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SpaceInvaders.Ships.Invader.Player" Collapsed="true">
+  <Class Name="SpaceInvaders.Ships.Invader.Player">
     <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAgAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>

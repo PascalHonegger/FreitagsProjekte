@@ -67,6 +67,12 @@
     <Compile Include="Ships\EventArgs\StarChangedEventArgs.cs" />
     <Compile Include="Ships\Shot.cs" />
     <Compile Include="SpaceInvadersViewModel.cs" />
+    <Compile Include="UserControlés\ShipControl.xaml.cs">
+      <DependentUpon>ShipControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlés\ShotControl.xaml.cs">
+      <DependentUpon>ShotControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +85,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControlés\ShipControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlés\ShotControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -109,12 +123,15 @@
     <None Include="Resources\invader3.psd" />
     <None Include="Resources\invader4.psd" />
     <None Include="Resources\invader5.psd" />
+    <None Include="Resources\LeSchuss.psd" />
     <None Include="Resources\leTank.psd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\LeSchuss.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\invader1.png" />
     <Resource Include="Resources\invader2.png" />
