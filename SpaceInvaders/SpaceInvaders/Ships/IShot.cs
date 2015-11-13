@@ -2,7 +2,7 @@
 
 namespace SpaceInvaders.Ships
 {
-	interface IShot
+	internal interface IShot
 	{
 		Direction Direction { get; }
 		Point Location { get; }

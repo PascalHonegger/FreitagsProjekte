@@ -17,8 +17,10 @@ namespace SpaceInvaders
 		private const int PlayAreaWidth = 400;
 		private const int PlayAreaHeight = 300;
 		public static readonly Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
+
+		private static readonly Point PlayerStartPoint = new Point(); //TODO
 		private readonly List<IShot> _invaderShots = new List<IShot>();
-		private readonly List<IShot> _playerShot = new List<IShot>();
+		private readonly List<IShot> _playerShots = new List<IShot>();
 		private readonly Random _random = new Random();
 		private readonly List<Point> _stars = new List<Point>();
 		private Direction _invaderDirection = Direction.Left;
@@ -76,11 +78,11 @@ namespace SpaceInvaders
 			}
 			_invaders.Clear();
 
-			foreach (var shot in _playerShot)
+			foreach (var shot in _playerShots)
 			{
 				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
 			}
-			_playerShot.Clear();
+			_playerShots.Clear();
 
 
 			foreach (var shot in _invaderShots)
@@ -111,8 +113,6 @@ namespace SpaceInvaders
 			UpdateTimer.Elapsed += (sender, args) => { Update(); };
 			UpdateTimer.Start();
 		}
-
-		private static readonly Point PlayerStartPoint = new Point(); //TODO
 
 		private void NextWave()
 		{
@@ -171,12 +171,21 @@ namespace SpaceInvaders
 			return type;
 		}
 
-		public void FireShot()
+		private void FireShot(IShip ship, Direction direction)
 		{
-			if (_playerShot.Count < MaximumPlayerShots)
+			if (ship is Player && _playerShots.Count < MaximumPlayerShots || ship is Invader)
 			{
-				var shot = new Shot(_player.Location, Direction.Up);
-				_playerShot.Add(shot);
+				var shot = new Shot(ship.Location, direction);
+
+				if (ship is Player)
+				{
+					_playerShots.Add(shot);
+				}
+				else
+				{
+					_invaderShots.Add(shot);
+				}
+
 				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, false));
 			}
 		}
@@ -230,7 +239,7 @@ namespace SpaceInvaders
 					shot.Move();
 					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot.Location)));
 				}
-				foreach (var shot in _playerShot)
+				foreach (var shot in _playerShots)
 				{
 					shot.Move();
 					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot.Location)));
@@ -273,7 +282,7 @@ namespace SpaceInvaders
 		{
 			foreach (var ship in _invaders.ToList())
 			{
-				foreach (var shot in _playerShot)
+				foreach (var shot in _playerShots)
 				{
 					if (FindCollisions(ship, shot))
 					{
@@ -281,7 +290,8 @@ namespace SpaceInvaders
 					}
 				}
 
-				if (FindCollisions(ship.Location, ship.Size.Width,ship.Size.Height, _player.Location, _player.Size.Width, _player.Size.Height))
+				if (FindCollisions(ship.Location, ship.Size.Width, ship.Size.Height, _player.Location, _player.Size.Width,
+					_player.Size.Height))
 				{
 					OnShipChangedEventHandler(new ShipChangedEventArgs(ship, true));
 				}
@@ -309,7 +319,7 @@ namespace SpaceInvaders
 		{
 			foreach (var invader in _invaders)
 			{
-				//invader.
+				FireShot(invader, Direction.Down);
 			}
 		}
 
@@ -327,6 +337,11 @@ namespace SpaceInvaders
 			if (rect1.Width > 0 || rect1.Height > 0)
 				return true;
 			return false;
+		}
+
+		public void FireShotPlayer()
+		{
+			FireShot(_player, Direction.Up);
 		}
 	}
 }
