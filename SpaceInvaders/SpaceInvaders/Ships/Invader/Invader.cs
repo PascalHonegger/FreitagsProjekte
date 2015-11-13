@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using SpaceInvaders.Ships.EventArgs;
 
 namespace SpaceInvaders.Ships.Invader
 {

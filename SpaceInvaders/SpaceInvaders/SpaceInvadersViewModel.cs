@@ -330,14 +330,6 @@ namespace SpaceInvaders
 			return rectsOverlap(ship1.Area, ship2.Area);
 		}
 
-		private bool FindCollisions(Point point1, double width1, double height1, Point point2, double width2, double height2)
-		{
-			var rect1 = new Rect(point1.X, point1.Y, width1, height1);
-			var rect2 = new Rect(point2.X, point2.Y, width2, height2);
-
-			return rectsOverlap(rect1, rect2);
-		}
-
 		private bool rectsOverlap(Rect rect1, Rect rect2)
 		{
 			rect1.Intersect(rect2);
