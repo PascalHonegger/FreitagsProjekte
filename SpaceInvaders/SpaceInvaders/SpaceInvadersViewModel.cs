@@ -91,9 +91,9 @@ namespace SpaceInvaders
 			}
 			_invaderShots.Clear();
 
-			foreach (var point in _stars)
+			foreach (var star in _stars)
 			{
-				OnStarChangedEventHandler(new StarChangedEventArgs(point, true));
+				OnStarChangedEventHandler(new StarChangedEventArgs(star, true));
 			}
 
 			for (var i = 0; i < InitialStarCount; i++)
@@ -104,6 +104,7 @@ namespace SpaceInvaders
 			_player = new Player(PlayerStartPoint);
 			ShipChangedEventHandler += _player.OnShipChanged;
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
+
 			Wave = 0;
 			Lives = 2;
 			Score = 0;
