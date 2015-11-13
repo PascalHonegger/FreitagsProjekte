@@ -8,11 +8,11 @@ namespace SpaceInvaders.Ships.Invader
 	{
 		public const int Width = 10;
 		public const int Height = 10;
-		public Invader(Point location, Size size, InvaderType invaderType) : base(location, size)
+		private static readonly Size InvaderSize = new Size(Width, Height);
+		public Invader(Point location, InvaderType invaderType) : base(location, InvaderSize)
 		{
 			InvaderType = invaderType;
 			Location = location;
-			Size = size;
 		}
 
 		private InvaderType InvaderType { get; set; }
