@@ -123,12 +123,15 @@
     <None Include="Resources\invader3.psd" />
     <None Include="Resources\invader4.psd" />
     <None Include="Resources\invader5.psd" />
+    <None Include="Resources\LeSchuss.psd" />
     <None Include="Resources\leTank.psd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\LeSchuss.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\invader1.png" />
     <Resource Include="Resources\invader2.png" />
