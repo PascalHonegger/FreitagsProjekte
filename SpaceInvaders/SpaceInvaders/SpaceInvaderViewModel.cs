@@ -166,12 +166,12 @@ namespace SpaceInvaders
 				foreach (var shot in _invaderShots)
 				{
 					shot.Move();
-					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot)));
+					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot.Location)));
 				}
 				foreach (var shot in _playerShot)
 				{
 					shot.Move();
-					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot)));
+					OnShotMovedEventHandler(new ShotMovedEventArgs(shot, IsOutOfBounds(shot.Location)));
 				}
 			}
 
@@ -182,20 +182,26 @@ namespace SpaceInvaders
 			CheckForPlayerCollision();
 		}
 
-		private static bool IsOutOfBounds(IShot shot)
+		private static bool IsOutOfBounds(Point shot)
 		{
-			return Math.Abs(shot.Location.X - PlayAreaHeight) < 0.5 || Math.Abs(shot.Location.X) < 0.5;
+			return Math.Abs(shot.X - PlayAreaHeight) < 0.5 || Math.Abs(shot.X) < 0.5;
 		}
 
 		private void MoveInvaders()
 		{
-			/*if (_invaders.All(invader => invader.Location.X < 0 || invader.Location.X > MAX)
-			{
-				
-			}*/
 			foreach (var invader in _invaders)
 			{
 				invader.Move(_invaderDirection);
+			}
+
+			if (_invaders.Any(invader => IsOutOfBounds(invader.Location)))
+			{
+				_invaderDirection = Direction.Left;
+				foreach (var invader in _invaders)
+				{
+					invader.Move(_invaderDirection);
+					invader.Move(Direction.Down);
+				}
 			}
 		}
 
