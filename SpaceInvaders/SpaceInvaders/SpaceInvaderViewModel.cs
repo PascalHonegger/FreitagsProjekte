@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
@@ -16,12 +15,12 @@ namespace SpaceInvaders
 		private const int PlayAreaWidth = 400;
 		private const int PlayAreaHeight = 300;
 		public static readonly Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
-		private List<Invader> _invaders = new List<Invader>();
 		private readonly List<IShot> _invaderShots = new List<IShot>();
 		private readonly List<IShot> _playerShot = new List<IShot>();
 		private readonly Random _random = new Random();
 		private readonly List<Point> _stars = new List<Point>();
 		private Direction _invaderDirection = Direction.Left;
+		private List<Invader> _invaders = new List<Invader>();
 		private bool _justMovedDown = false;
 		private DateTime _lastUpdated = DateTime.MinValue;
 		private Player _player;
@@ -37,6 +36,8 @@ namespace SpaceInvaders
 		public int Lives { get; private set; }
 		public bool GameOver { get; private set; }
 		public bool PlayerDying => _playerDied.HasValue;
+
+		private int Level { get; } = 1;
 
 		public event EventHandler<ShipChangedEventArgs> ShipChangedEventHandler;
 		public event EventHandler<ShotMovedEventArgs> ShotMovedEventHandler;
@@ -99,7 +100,7 @@ namespace SpaceInvaders
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 			Wave = 0;
 			Lives = 2;
-			
+
 			NextWave();
 		}
 
@@ -113,15 +114,15 @@ namespace SpaceInvaders
 		{
 			IList<Invader> attackers = new List<Invader>();
 
-			var currentX = Invader.Height * 1.4;
-			var currentY = Invader.Width * 1.4;
+			var currentX = Invader.Height*1.4;
+			var currentY = Invader.Width*1.4;
 			for (var i = 0; i < 16; i++)
 			{
 				attackers.Add(new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType()));
-				currentX += Invader.Width * 2.4;
-				if (IsOutOfBounds(new Point(currentX * 2.4, currentY)))
+				currentX += Invader.Width*2.4;
+				if (IsOutOfBounds(new Point(currentX*2.4, currentY)))
 				{
-					currentX = Invader.Height * 1.4;
+					currentX = Invader.Height*1.4;
 					currentY += Invader.Height + Invader.Height*1.4;
 				}
 			}
@@ -132,7 +133,7 @@ namespace SpaceInvaders
 		private InvaderType GetInvaderType()
 		{
 			InvaderType type = 0;
-			switch (Level % 6)
+			switch (Level%6)
 			{
 				case 0:
 					type = InvaderType.Mothership;
@@ -152,12 +153,11 @@ namespace SpaceInvaders
 				case 5:
 					type = InvaderType.Spaceship;
 					break;
-				default: throw new NotImplementedException("Invadertype not implementet");
+				default:
+					throw new NotImplementedException("Invadertype not implementet");
 			}
 			return type;
 		}
-
-		private int Level { get; set; } = 1;
 
 		public void FireShot()
 		{
@@ -228,6 +228,8 @@ namespace SpaceInvaders
 			CheckForInvaderCollision();
 
 			CheckForPlayerCollision();
+
+			MoveInvaders();
 		}
 
 		private static bool IsOutOfBounds(Point shot)
