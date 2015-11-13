@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using SpaceInvaders.Ships.EventArgs;
+using SpaceInvaders.Ships.Invader;
 
 namespace SpaceInvaders.Ships
 {
@@ -16,5 +19,16 @@ namespace SpaceInvaders.Ships
 
 		public Rect Area => new Rect(Location, Size);
 		public abstract void Move(Direction direction);
+
+		public void OnShipChanged(object sender, ShipChangedEventArgs e)
+		{
+			if (e.Killed && Equals(e.ShipUpdated, this))
+			{
+				if (this is Player)
+				{
+					
+				}
+			}
+		}
 	}
 }

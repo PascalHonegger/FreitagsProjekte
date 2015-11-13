@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using SpaceInvaders.Ships.EventArgs;
 
 namespace SpaceInvaders.Ships.Invader
 {

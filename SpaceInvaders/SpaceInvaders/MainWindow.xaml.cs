@@ -26,5 +26,10 @@ namespace SpaceInvaders
 				_viewModel.MovePlayer(Direction.Right);
 			}
 		}
+
+		private void button_Click(object sender, RoutedEventArgs e)
+		{
+			_viewModel.StartGame();
+		}
 	}
 }

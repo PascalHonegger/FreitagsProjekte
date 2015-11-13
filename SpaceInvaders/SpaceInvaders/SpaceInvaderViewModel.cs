@@ -30,12 +30,9 @@ namespace SpaceInvaders
 		public SpaceInvaderViewModel()
 		{
 			EndGame();
-			UpdateTimer = new Timer(1000);
-			UpdateTimer.Elapsed += (sender, args) => { Update();};
-			UpdateTimer.Start();
 		}
 
-		private Timer UpdateTimer { get; }
+		private Timer UpdateTimer { get; set; }
 
 		public int Score { get; private set; }
 		public int Wave { get; private set; }
@@ -102,13 +99,20 @@ namespace SpaceInvaders
 				_stars.Add(new Point()); //TODO RANDOM KORDINATES
 			}
 
-			_player = new Player(new Point());
+			_player = new Player(PlayerStartPoint);
+			ShipChangedEventHandler += _player.OnShipChanged;
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 			Wave = 0;
 			Lives = 2;
 
 			NextWave();
+
+			UpdateTimer = new Timer(1000);
+			UpdateTimer.Elapsed += (sender, args) => { Update(); };
+			UpdateTimer.Start();
 		}
+
+		private static readonly Point PlayerStartPoint = new Point(); //TODO
 
 		private void NextWave()
 		{
@@ -124,7 +128,9 @@ namespace SpaceInvaders
 			var currentY = Invader.Width*1.4;
 			for (var i = 0; i < 16; i++)
 			{
-				attackers.Add(new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType()));
+				var invader = new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType());
+				ShipChangedEventHandler += invader.OnShipChanged;
+				attackers.Add(invader);
 				currentX += Invader.Width*2.4;
 				if (IsOutOfBounds(new Point(currentX*2.4, currentY)))
 				{
@@ -138,7 +144,7 @@ namespace SpaceInvaders
 
 		private InvaderType GetInvaderType()
 		{
-			InvaderType type = 0;
+			InvaderType type;
 			switch (Level%6)
 			{
 				case 0:
@@ -303,7 +309,7 @@ namespace SpaceInvaders
 		{
 			foreach (var invader in _invaders)
 			{
-				invader.
+				//invader.
 			}
 		}
 
