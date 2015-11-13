@@ -8,11 +8,11 @@ namespace SpaceInvaders
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		readonly SpaceInvaderViewModel _viewModel;
+		readonly SpaceInvadersViewModel _viewModel;
 		public MainWindow()
 		{
 			InitializeComponent();
-			DataContext = _viewModel = new SpaceInvaderViewModel();
+			DataContext = _viewModel = new SpaceInvadersViewModel();
 		}
 
 		private void UIElement_OnKeyDown(object sender, KeyEventArgs e)

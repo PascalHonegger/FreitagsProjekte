@@ -66,7 +66,7 @@
     <Compile Include="Ships\EventArgs\ShotMovedEventArgs.cs" />
     <Compile Include="Ships\EventArgs\StarChangedEventArgs.cs" />
     <Compile Include="Ships\Shot.cs" />
-    <Compile Include="SpaceInvaderViewModel.cs" />
+    <Compile Include="SpaceInvadersViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

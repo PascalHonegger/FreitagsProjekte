@@ -9,7 +9,7 @@ using SpaceInvaders.Ships.Invader;
 
 namespace SpaceInvaders
 {
-	internal class SpaceInvaderViewModel
+	internal class SpaceInvadersViewModel
 	{
 		private const int MaximumPlayerShots = 3;
 		private const int InitialStarCount = 50;
@@ -27,7 +27,7 @@ namespace SpaceInvaders
 		private Player _player;
 		private DateTime? _playerDied = null;
 
-		public SpaceInvaderViewModel()
+		public SpaceInvadersViewModel()
 		{
 			EndGame();
 		}
