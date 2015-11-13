@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		SizeChanged="MainWindow_OnSizeChanged"
         xmlns:local="clr-namespace:SpaceInvaders"
+        xmlns:userControlés="clr-namespace:SpaceInvaders.UserControlés"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
 	<Grid Focusable="True" KeyDown="UIElement_OnKeyDown">
 		<Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="364,260,0,0" VerticalAlignment="Top" Width="144" Height="53" Click="button_Click"/>
-
+        <userControlés:ShotControl></userControlés:ShotControl>
 	</Grid>
 </Window>

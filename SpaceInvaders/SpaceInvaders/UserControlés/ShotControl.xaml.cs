@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SpaceInvaders.Ships;
 
 namespace SpaceInvaders.UserControlés
 {
@@ -23,6 +24,7 @@ namespace SpaceInvaders.UserControlés
 		public ShotControl()
 		{
 			InitializeComponent();
+			DataContext = new Shot(new Point(), Direction.Down);
 		}
 	}
 }

@@ -8,7 +8,5 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance ships:Shot}"
 			 d:DesignHeight="{Binding ShotSize.Height}" d:DesignWidth="{Binding ShotSize.Width}">
-    <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-            
-    </Grid>
+    <Image Source="../Resources/LeSchuss.png" Height="{Binding ShotSize.Height}" Width="{Binding ShotSize.Width}" />
 </UserControl>
