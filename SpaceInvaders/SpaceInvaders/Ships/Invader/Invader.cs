@@ -5,6 +5,8 @@ namespace SpaceInvaders.Ships.Invader
 {
 	internal class Invader : ShipBase
 	{
+		public const int Width = 10;
+		public const int Height = 10;
 		public Invader(Point location, Size size, InvaderType invaderType) : base(location, size)
 		{
 			Score = (int) (InvaderType = invaderType);

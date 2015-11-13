@@ -2,10 +2,11 @@
 {
 	internal enum InvaderType
 	{
-		Bug = 40,
 		Saucer = 10,
+		Star = 20,
 		Satellite = 30,
+		Bug = 40,
 		Spaceship = 50,
-		Star = 20
+		Mothership = 100
 	}
 }

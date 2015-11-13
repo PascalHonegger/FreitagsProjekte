@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
@@ -41,22 +42,22 @@ namespace SpaceInvaders
 		public event EventHandler<ShotMovedEventArgs> ShotMovedEventHandler;
 		public event EventHandler<StarChangedEventArgs> StarChangedEventHandler;
 
-		public void EndGame()
+		private void EndGame()
 		{
 			GameOver = true;
 		}
 
-		protected void OnShipChangedEventHandler(ShipChangedEventArgs e)
+		private void OnShipChangedEventHandler(ShipChangedEventArgs e)
 		{
 			ShipChangedEventHandler?.Invoke(this, e);
 		}
 
-		protected void OnShotMovedEventHandler(ShotMovedEventArgs e)
+		private void OnShotMovedEventHandler(ShotMovedEventArgs e)
 		{
 			ShotMovedEventHandler?.Invoke(this, e);
 		}
 
-		protected void OnStarChangedEventHandler(StarChangedEventArgs e)
+		private void OnStarChangedEventHandler(StarChangedEventArgs e)
 		{
 			StarChangedEventHandler?.Invoke(this, e);
 		}
@@ -103,13 +104,58 @@ namespace SpaceInvaders
 		}
 
 
-		public void NextWave()
+		private void NextWave()
 		{
 			Wave++;
 			_invaders.Clear();
+			var attackers = CreateNewAttackWave();
+			_invaders.AddRange(attackers);
 			// TODO Add lines of new invaders
-			_invaders.Add(new Invader(new Point(),new Size(10, 10), InvaderType.Bug));
 		}
+
+		private IEnumerable<Invader> CreateNewAttackWave()
+		{
+			IList<Invader> attackers = new List<Invader>();
+
+			double currentX = 0;
+			double currentY = 0;
+			for (int i = 0; i < 16; i++)
+			{
+				attackers.Add(new Invader(new Point(currentX, currentY), new Size(Invader.Width, Invader.Height), GetInvaderType()));
+			}
+
+			return attackers;
+		}
+
+		private InvaderType GetInvaderType()
+		{
+			InvaderType type = 0;
+			switch (Level % 6)
+			{
+				case 0:
+					type = InvaderType.Mothership;
+					break;
+				case 1:
+					type = InvaderType.Saucer;
+					break;
+				case 2:
+					type = InvaderType.Star;
+					break;
+				case 3:
+					type = InvaderType.Satellite;
+					break;
+				case 4:
+					type = InvaderType.Bug;
+					break;
+				case 5:
+					type = InvaderType.Spaceship;
+					break;
+				default: throw new NotImplementedException("Invadertype not implementet");
+			}
+			return type;
+		}
+
+		private int Level { get; set; } = 1;
 
 		public void FireShot()
 		{
@@ -158,7 +204,7 @@ namespace SpaceInvaders
 
 			if (PlayerDying)
 			{
-				MoveInvaders();
+				OnShipChangedEventHandler(new ShipChangedEventArgs(_player, true));
 			}
 
 			if (!PlayerDying)
