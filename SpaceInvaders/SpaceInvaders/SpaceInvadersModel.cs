@@ -322,10 +322,19 @@ namespace SpaceInvaders
 
 		private void ReturnFire()
 		{
-			foreach (var invader in _invaders)
+			if (_invaderShots.Count > Wave + 1)
 			{
-				FireShot(invader, Direction.Down);
+				return;
 			}
+
+			if (_random.Next(10) < 10 - Wave)
+			{
+				return;
+			}
+
+			var invader = _invaders.OrderByDescending(i => i.Location.X).PickRandom();
+
+			FireShot(invader, Direction.Down);
 		}
 
 		private bool FindCollisions(IShip ship1, IShip ship2)
