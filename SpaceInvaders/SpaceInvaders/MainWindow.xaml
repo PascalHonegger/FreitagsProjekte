@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:userControls="clr-namespace:SpaceInvaders.UserControls"
+        xmlns:spaceInvaders="clr-namespace:SpaceInvaders"
         SizeChanged="MainWindow_OnSizeChanged"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-	<Grid Background="Black" x:Name="PlayArea" Focusable="True" KeyDown="UIElement_OnKeyDown" Loaded="PlayArea_OnLoaded">
+        Title="MainWindow" Height="350" Width="525"
+		d:DataContext="{d:DesignInstance spaceInvaders:SpaceInvadersViewModel}">
+	<Grid KeyDown="UIElement_OnKeyDown">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
@@ -15,9 +16,10 @@
 		<Grid.RowDefinitions>
 			<RowDefinition />
 			<RowDefinition />
+			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Button Grid.Column="1" Grid.Row="1" Content="Spiel starten" Click="button_Click"/>
-		<userControls:ShipControl Grid.Row="0" Grid.Column="0"></userControls:ShipControl>
-		<userControls:ShotControl Grid.Row="0" Grid.Column="0"></userControls:ShotControl>
+		<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Score}"/>
+		<Canvas Background="Black" Grid.Row="2" Grid.Column="1" x:Name="PlayArea" Loaded="PlayArea_OnLoaded" Focusable="True" />
 	</Grid>
 </Window>

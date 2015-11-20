@@ -29,14 +29,9 @@ namespace SpaceInvaders
 		private Player _player;
 		private DateTime? _playerDied = null;
 
-		public SpaceInvadersModel()
-		{
-			EndGame();
-		}
-
 		private Timer UpdateTimer { get; } = new Timer(100);
 
-		private int Score { get; set; }
+		public int Score { get; set; }
 		private int Wave { get; set; }
 		private int Lives { get; set; }
 		public bool GameOver { get; set; }
@@ -195,8 +190,7 @@ namespace SpaceInvaders
 			{
 				OnShipChangedEventHandler(new ShipChangedEventArgs(_player, true));
 			}
-
-			if (!PlayerDying)
+			else
 			{
 				foreach (var shot in _invaderShots)
 				{
@@ -322,7 +316,7 @@ namespace SpaceInvaders
 
 		public void UpdateAllShipsAndStars()
 		{
-			throw new NotImplementedException();
+			
 		}
 	}
 }

@@ -16,15 +16,5 @@ namespace SpaceInvaders.UserControls
 		{
 			InvaderShotStoryboard.Begin();
 		}
-
-		public void StartFlashing()
-		{
-			flashStoryboard.Begin();
-		}
-
-		public void StopFlashing()
-		{
-			flashStoryboard.Stop();
-		}
 	}
 }

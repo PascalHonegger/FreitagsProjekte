@@ -11,10 +11,11 @@ namespace SpaceInvaders
 		public MainWindow()
 		{
 			InitializeComponent();
-			DataContext = new SpaceInvadersModel();
+			DataContext = new SpaceInvadersViewModel();
 		}
 
-		private SpaceInvadersModel Model => DataContext as SpaceInvadersModel;
+		private SpaceInvadersViewModel ViewModel => DataContext as SpaceInvadersViewModel;
+		private SpaceInvadersModel Model => (DataContext as SpaceInvadersViewModel)?.Model;
 
 		private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
 		{
@@ -67,7 +68,7 @@ namespace SpaceInvaders
 			}
 			PlayArea.Width = targetWidth;
 			PlayArea.Height = targetHeight;
-			Model.PlayAreaSize = new Size(targetWidth, targetHeight);
+			ViewModel.PlayAreaSize = new Size(targetWidth, targetHeight);
 		}
 	}
 }
