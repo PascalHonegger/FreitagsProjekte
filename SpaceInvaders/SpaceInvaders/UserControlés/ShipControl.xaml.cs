@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,21 @@ namespace SpaceInvaders.UserControlés
 		public ShipControl()
 		{
 			InitializeComponent();
+		}
+
+		public void InvaderShot()
+		{
+			invaderShotStoryboard.Begin();
+		}
+
+		public void StartFlashing()
+		{
+			flashStoryboard.Begin();
+		}
+
+		public void StopFlashing()
+		{
+			flashStoryboard.Stop();
 		}
 	}
 }

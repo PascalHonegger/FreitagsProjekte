@@ -303,7 +303,7 @@ namespace SpaceInvaders
 
 		private bool FindCollisions(IShip ship, IShot shot)
 		{
-			var rect1 = new Rect(ship.Location.X, ship.Location.Y, ship.Size.Width, ship.Size.Height);
+			var rect1 = ship.Area;
 			var rect2 = new Rect(shot.Location.X, shot.Location.Y, Shot.ShotSize.Width, Shot.ShotSize.Height);
 
 			return rectsOverlap(rect1, rect2);
