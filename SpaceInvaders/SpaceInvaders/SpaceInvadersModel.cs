@@ -22,8 +22,7 @@ namespace SpaceInvaders
 		private static readonly Point PlayerStartPoint = new Point(); //TODO
 		private readonly List<IShot> _invaderShots = new List<IShot>();
 		private readonly List<IShot> _playerShots = new List<IShot>();
-		private readonly Random _random = new Random();
-		private readonly List<Point> _stars = new List<Point>();
+		public static readonly Random Random = new Random();
 		private List<Invader> _invaders = new List<Invader>();
 		private bool _justMovedDown;
 		private DateTime _lastUpdated = DateTime.MinValue;
@@ -45,7 +44,6 @@ namespace SpaceInvaders
 
 		public event EventHandler<ShipChangedEventArgs> ShipChangedEventHandler;
 		public event EventHandler<ShotMovedEventArgs> ShotMovedEventHandler;
-		public event EventHandler<StarChangedEventArgs> StarChangedEventHandler;
 
 		private void EndGame()
 		{
@@ -61,11 +59,6 @@ namespace SpaceInvaders
 		private void OnShotMovedEventHandler(ShotMovedEventArgs e)
 		{
 			ShotMovedEventHandler?.Invoke(this, e);
-		}
-
-		private void OnStarChangedEventHandler(StarChangedEventArgs e)
-		{
-			StarChangedEventHandler?.Invoke(this, e);
 		}
 
 		public void StartGame()
@@ -90,16 +83,6 @@ namespace SpaceInvaders
 				OnShotMovedEventHandler(new ShotMovedEventArgs(shot, true));
 			}
 			_invaderShots.Clear();
-
-			foreach (var star in _stars)
-			{
-				OnStarChangedEventHandler(new StarChangedEventArgs(star, true));
-			}
-
-			for (var i = 0; i < InitialStarCount; i++)
-			{
-				_stars.Add(new Point()); //TODO RANDOM KORDINATES
-			}
 
 			_player = new Player(PlayerStartPoint);
 			ShipChangedEventHandler += _player.OnShipChanged;
@@ -201,26 +184,6 @@ namespace SpaceInvaders
 			OnShipChangedEventHandler(new ShipChangedEventArgs(_player, false));
 		}
 
-		public void Twinkle()
-		{
-			// Add Star
-			if (_random.Next(1, 100) > 50 && _stars.Count < InitialStarCount*1.5)
-			{
-				/*var _ran = new Random();
-				var star = new Point(_ran.Next());*/
-				var star = new Point();
-				_stars.Add(star);
-				OnStarChangedEventHandler(new StarChangedEventArgs(star, true));
-			}
-			// Remove Star
-			else if (_stars.Count > InitialStarCount*0.75)
-			{
-				var star = _stars.Last();
-				_stars.Remove(star);
-				OnStarChangedEventHandler(new StarChangedEventArgs(star, false));
-			}
-		}
-
 		private void Update()
 		{
 			if (_invaders.Count == 0)
@@ -254,8 +217,6 @@ namespace SpaceInvaders
 			MoveInvaders();
 
 			ReturnFire();
-
-			Twinkle();
 		}
 
 		private static bool IsOutOfBounds(Point shot)
@@ -331,7 +292,7 @@ namespace SpaceInvaders
 				return;
 			}
 
-			if (_random.Next(10) < 10 - Wave)
+			if (Random.Next(10) < 10 - Wave)
 			{
 				return;
 			}

@@ -65,7 +65,6 @@
     <Compile Include="Ships\Invader\Player.cs" />
     <Compile Include="Ships\ShipBase.cs" />
     <Compile Include="Ships\EventArgs\ShotMovedEventArgs.cs" />
-    <Compile Include="Ships\EventArgs\StarChangedEventArgs.cs" />
     <Compile Include="Ships\Shot.cs" />
     <Compile Include="SpaceInvadersModel.cs" />
     <Compile Include="SpaceInvadersViewModel.cs" />
@@ -74,9 +73,6 @@
     </Compile>
     <Compile Include="UserControls\ShotControl.xaml.cs">
       <DependentUpon>ShotControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\StarControl.xaml.cs">
-      <DependentUpon>StarControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,10 +91,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ShotControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\StarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
