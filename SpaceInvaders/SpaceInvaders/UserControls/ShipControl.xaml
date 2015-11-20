@@ -11,11 +11,11 @@
        <Image.Triggers>
             <EventTrigger RoutedEvent="Rectangle.MouseEnter">
                 <BeginStoryboard>
-                    <Storyboard x:Name="FlashStoryboard">
+                    <Storyboard x:Name="InvaderShotStoryboard">
                         <DoubleAnimation 
-                Storyboard.TargetName="ShipTexture"
-                Storyboard.TargetProperty="Opacity"
-                From="1" To="0" />
+							Storyboard.TargetName="ShipTexture"
+							Storyboard.TargetProperty="Opacity"
+							From="1" To="0" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>

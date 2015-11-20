@@ -19,12 +19,12 @@ namespace SpaceInvaders.UserControls
 
 		public void StartFlashing()
 		{
-			ShipTexture.BeginStoryboard(FlashStoryBoard);
+			flashStoryboard.Begin();
 		}
 
 		public void StopFlashing()
 		{
-			ShipTexture.Stop();
+			flashStoryboard.Stop();
 		}
 	}
 }
