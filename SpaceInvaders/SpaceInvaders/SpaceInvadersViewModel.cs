@@ -38,12 +38,11 @@ namespace SpaceInvaders
 			{
 				Scale = value.Width/405;
 				_model.UpdateAllShipsAndStars();
-				RecreateScanLines();
+				//TODO RecreateScanLines();
 			}
 		}
 		private readonly SpaceInvadersModel _model = new SpaceInvadersModel();
 
-		private readonly SpaceInvadersModel _model = new SpaceInvadersModel();
 		private readonly DispatcherTimer _timer = new DispatcherTimer();
 		private FrameworkElement _playerControl = null;
 		private bool _playerFlashing = false;
