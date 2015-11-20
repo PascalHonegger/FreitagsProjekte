@@ -14,17 +14,17 @@ namespace SpaceInvaders.UserControls
 
 		public void InvaderShot()
 		{
-			invaderShotStoryboard.Begin();
+			InvaderShotStoryboard.Begin();
 		}
 
 		public void StartFlashing()
 		{
-			flashStoryboard.Begin();
+			ShipTexture.BeginStoryboard(FlashStoryBoard);
 		}
 
 		public void StopFlashing()
 		{
-			flashStoryboard.Stop();
+			ShipTexture.Stop();
 		}
 	}
 }
