@@ -4,6 +4,7 @@ using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
@@ -23,11 +24,9 @@ namespace SpaceInvaders
 		private readonly List<IShot> _playerShots = new List<IShot>();
 		private readonly Random _random = new Random();
 		private readonly List<Point> _stars = new List<Point>();
-		private Direction _invaderDirection = Direction.Left;
 		private List<Invader> _invaders = new List<Invader>();
-		//TODO what are these for??!?!?!?
-		/*private bool _justMovedDown = false;
-		private DateTime _lastUpdated = DateTime.MinValue;*/
+		private bool _justMovedDown;
+		private DateTime _lastUpdated = DateTime.MinValue;
 		private Player _player;
 		private DateTime? _playerDied = null;
 
@@ -268,15 +267,15 @@ namespace SpaceInvaders
 		{
 			foreach (var invader in _invaders)
 			{
-				invader.Move(_invaderDirection);
+				invader.Move(_justMovedDown ? Direction.Right : Direction.Left);
 			}
 
 			if (_invaders.Any(invader => IsOutOfBounds(invader.Location)))
 			{
-				_invaderDirection = Direction.Left;
+				_justMovedDown = !_justMovedDown;
 				foreach (var invader in _invaders)
 				{
-					invader.Move(_invaderDirection);
+					invader.Move(_justMovedDown ? Direction.Right : Direction.Left);
 					invader.Move(Direction.Down);
 				}
 			}
