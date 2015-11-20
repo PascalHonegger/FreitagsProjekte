@@ -7,10 +7,18 @@
              mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ships:ShipBase}"
              d:DesignHeight="{Binding Size.Height}" d:DesignWidth="{Binding Size.Width}">
-	<UserControl.Resources>
-		<Storyboard x:Key="FlashStoryBoard" x:Name="FlashStoryboard">
-			<DoubleAnimation Storyboard.TargetName="ShipTexture"/>
-		</Storyboard>
-	</UserControl.Resources>
-	<Image Source="{Binding Texture}" x:Name="ShipTexture" />
+    <Image Source="{Binding Texture}" x:Name="ShipTexture" >
+       <Image.Triggers>
+            <EventTrigger RoutedEvent="Rectangle.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard x:Name="FlashStoryboard">
+                        <DoubleAnimation 
+                Storyboard.TargetName="ShipTexture"
+                Storyboard.TargetProperty="Opacity"
+                From="1" To="0" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Image.Triggers>
+    </Image>
 </UserControl>
