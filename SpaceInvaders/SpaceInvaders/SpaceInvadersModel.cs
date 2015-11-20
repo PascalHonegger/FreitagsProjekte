@@ -265,6 +265,11 @@ namespace SpaceInvaders
 
 		private void MoveInvaders()
 		{
+			if (_lastUpdated >= DateTime.Today.AddSeconds(10 - Wave))
+			{
+				return;
+			}
+
 			foreach (var invader in _invaders)
 			{
 				invader.Move(_justMovedDown ? Direction.Right : Direction.Left);
