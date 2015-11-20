@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		SizeChanged="MainWindow_OnSizeChanged"
-        xmlns:userControlés="clr-namespace:SpaceInvaders.UserControlés"
+        xmlns:userControls="clr-namespace:SpaceInvaders.UserControls"
+        SizeChanged="MainWindow_OnSizeChanged"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
 	<Grid Background="Black" x:Name="PlayArea" Focusable="True" KeyDown="UIElement_OnKeyDown" Loaded="PlayArea_OnLoaded">
@@ -17,7 +17,7 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Button Grid.Column="1" Grid.Row="1" Content="Spiel starten" Click="button_Click"/>
-		<userControlés:ShipControl Grid.Row="0" Grid.Column="0"></userControlés:ShipControl>
-		<userControlés:ShotControl Grid.Row="0" Grid.Column="0"></userControlés:ShotControl>
+		<userControls:ShipControl Grid.Row="0" Grid.Column="0"></userControls:ShipControl>
+		<userControls:ShotControl Grid.Row="0" Grid.Column="0"></userControls:ShotControl>
 	</Grid>
 </Window>
