@@ -66,6 +66,7 @@
     <Compile Include="Ships\EventArgs\ShotMovedEventArgs.cs" />
     <Compile Include="Ships\EventArgs\StarChangedEventArgs.cs" />
     <Compile Include="Ships\Shot.cs" />
+    <Compile Include="SpaceInvadersModel.cs" />
     <Compile Include="SpaceInvadersViewModel.cs" />
     <Compile Include="UserControlés\ShipControl.xaml.cs">
       <DependentUpon>ShipControl.xaml</DependentUpon>

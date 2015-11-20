@@ -24,7 +24,7 @@ namespace SpaceInvaders.Ships
 		{
 			var timeSinceLastMoved = DateTime.Now - _lastMoved;
 			var distance = timeSinceLastMoved.Milliseconds * ShotPixelsPerSecond / 1000;
-			if (Direction == Direction.Up) distance += -1;
+			if (Direction == Direction.Up) distance *= -1;
 			Location = new Point(Location.X, Location.Y + distance);
 			_lastMoved = DateTime.Now;
 		}

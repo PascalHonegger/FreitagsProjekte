@@ -12,30 +12,30 @@ namespace SpaceInvaders
 		public MainWindow()
 		{
 			InitializeComponent();
-			DataContext = new SpaceInvadersViewModel();
+			DataContext = new SpaceInvadersModel();
 		}
 
-		private SpaceInvadersViewModel ViewModel => DataContext as SpaceInvadersViewModel;
+		private SpaceInvadersModel Model => DataContext as SpaceInvadersModel;
 
 		private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.A || e.Key == Key.Left)
 			{
-				ViewModel.MovePlayer(Direction.Left);
+				Model.MovePlayer(Direction.Left);
 			}
 			else if (e.Key == Key.D || e.Key == Key.Right)
 			{
-				ViewModel.MovePlayer(Direction.Right);
+				Model.MovePlayer(Direction.Right);
 			}
 			else if (e.Key == Key.Space)
 			{
-				ViewModel.FireShotPlayer();
+				Model.FireShotPlayer();
 			}
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
 		{
-			ViewModel.StartGame();
+			Model.StartGame();
 		}
 
 		private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -68,7 +68,7 @@ namespace SpaceInvaders
 			}
 			PlayArea.Width = targetWidth;
 			PlayArea.Height = targetHeight;
-			ViewModel.PlayAreaSize = new Size(targetWidth, targetHeight);
+			Model.PlayAreaSize = new Size(targetWidth, targetHeight);
 		}
 	}
 }
