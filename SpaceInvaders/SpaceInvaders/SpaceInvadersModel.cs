@@ -41,7 +41,7 @@ namespace SpaceInvaders
 		private int Score { get; set; }
 		private int Wave { get; set; }
 		private int Lives { get; set; }
-		private bool GameOver { get; set; }
+		public bool GameOver { get; set; }
 		private bool PlayerDying => _playerDied.HasValue;
 
 		public event EventHandler<ShipChangedEventArgs> ShipChangedEventHandler;
@@ -344,6 +344,11 @@ namespace SpaceInvaders
 		public void FireShotPlayer()
 		{
 			FireShot(_player, Direction.Up);
+		}
+
+		public void UpdateAllShipsAndStars()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
