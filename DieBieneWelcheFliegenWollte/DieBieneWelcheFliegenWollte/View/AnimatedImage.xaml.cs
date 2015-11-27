@@ -11,7 +11,7 @@ namespace DieBieneWelcheFliegenWollte.View
 	/// <summary>
 	/// Interaction logic for AnimatedImage.xaml
 	/// </summary>
-	public partial class AnimatedImage : UserControl
+	public partial class AnimatedImage
 	{
 		public AnimatedImage()
 		{
@@ -26,7 +26,10 @@ namespace DieBieneWelcheFliegenWollte.View
 		public void StartAnimation(IEnumerable<string> imageNames, TimeSpan interval)
 		{
 			var storyboard = new Storyboard();
-			var animation = new ObjectAnimationUsingKeyFrames();
+			var animation = new ObjectAnimationUsingKeyFrames
+			{
+				BeginTime = new TimeSpan(0, 0, 0)
+			};
 			Storyboard.SetTarget(animation, Image);
 			Storyboard.SetTargetProperty(animation, new PropertyPath("Source"));
 
@@ -47,13 +50,12 @@ namespace DieBieneWelcheFliegenWollte.View
 			storyboard.Begin();
 		}
 
-		private static BitmapImage CreateImageFromAssets(string imageName)
+		private static BitmapImage CreateImageFromAssets(string imageFileName)
 		{
 			try
 			{
-				var uri = new Uri(imageName, UriKind.RelativeOrAbsolute);
+				var uri = new Uri("pack://application:,,,/View/" + imageFileName, UriKind.RelativeOrAbsolute);
 				return new BitmapImage(uri);
-
 			}
 			catch (System.IO.IOException)
 			{

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using JetBrains.dotMemoryUnit;
 
 namespace DieBieneWelcheFliegenWollte.View
 {
 	/// <summary>
 	/// Interaction logic for FlyingBees.xaml
 	/// </summary>
-	public partial class FlyingBees : Page
+	public partial class FlyingBees
 	{
 		public FlyingBees()
 		{
@@ -19,12 +20,13 @@ namespace DieBieneWelcheFliegenWollte.View
 			{
 				"biene1.png",
 				"biene2.png",
+				"biene3.png",
 				"biene3.png"
 			};
 
-			FirstBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(50));
-			SecondBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(10));
-			ThirdBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(100));
+			FirstBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(500));
+			SecondBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(20));
+			ThirdBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(200));
 
 			var storyboard = new Storyboard();
 			var animation = new DoubleAnimation();
@@ -35,6 +37,7 @@ namespace DieBieneWelcheFliegenWollte.View
 			animation.Duration = TimeSpan.FromSeconds(3);
 			animation.RepeatBehavior = RepeatBehavior.Forever;
 			animation.AutoReverse = true;
+			storyboard.Children.Add(animation);
 			storyboard.Begin();
 		}
 	}
