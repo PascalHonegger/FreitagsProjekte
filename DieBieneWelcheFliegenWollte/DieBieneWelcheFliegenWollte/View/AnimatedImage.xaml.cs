@@ -26,10 +26,7 @@ namespace DieBieneWelcheFliegenWollte.View
 		public void StartAnimation(IEnumerable<string> imageNames, TimeSpan interval)
 		{
 			var storyboard = new Storyboard();
-			var animation = new ObjectAnimationUsingKeyFrames
-			{
-				BeginTime = new TimeSpan(0, 0, 0)
-			};
+			var animation = new ObjectAnimationUsingKeyFrames();
 			Storyboard.SetTarget(animation, Image);
 			Storyboard.SetTargetProperty(animation, new PropertyPath("Source"));
 

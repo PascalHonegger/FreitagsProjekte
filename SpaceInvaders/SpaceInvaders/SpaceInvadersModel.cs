@@ -4,7 +4,6 @@ using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.TextFormatting;
 using SpaceInvaders.Ships;
 using SpaceInvaders.Ships.EventArgs;
 using SpaceInvaders.Ships.Invader;
@@ -14,12 +13,10 @@ namespace SpaceInvaders
 	internal class SpaceInvadersModel
 	{
 		private const int MaximumPlayerShots = 3;
-		private const int InitialStarCount = 50;
 		private const int PlayAreaWidth = 400;
 		private const int PlayAreaHeight = 300;
-		public Size PlayAreaSize = new Size(PlayAreaWidth, PlayAreaHeight);
 
-		private static readonly Point PlayerStartPoint = new Point(); //TODO
+		private static readonly Point PlayerStartPoint = new Point(200, 10);
 		private readonly List<IShot> _invaderShots = new List<IShot>();
 		private readonly List<IShot> _playerShots = new List<IShot>();
 		public static readonly Random Random = new Random();
@@ -312,11 +309,6 @@ namespace SpaceInvaders
 		public void FireShotPlayer()
 		{
 			FireShot(_player, Direction.Up);
-		}
-
-		public void UpdateAllShipsAndStars()
-		{
-			
 		}
 	}
 }

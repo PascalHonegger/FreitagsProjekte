@@ -20,7 +20,6 @@ namespace DieBieneWelcheFliegenWollte.View
 			{
 				"biene1.png",
 				"biene2.png",
-				"biene3.png",
 				"biene3.png"
 			};
 

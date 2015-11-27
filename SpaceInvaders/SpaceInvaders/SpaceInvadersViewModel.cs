@@ -39,17 +39,6 @@ namespace SpaceInvaders
 
 		public static double Scale { get; private set; }
 
-		public int Score { get; private set; }
-
-		public Size PlayAreaSize
-		{
-			set
-			{
-				Scale = value.Width/405;
-				Model.UpdateAllShipsAndStars();
-			}
-		}
-
 		public SpaceInvadersModel Model { get; } = new SpaceInvadersModel();
 	}
 }

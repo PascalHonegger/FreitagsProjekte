@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:spaceInvaders="clr-namespace:SpaceInvaders"
-        SizeChanged="MainWindow_OnSizeChanged"
         mc:Ignorable="d"
         Title="MainWindow" Height="666" Width="666"
 		d:DataContext="{d:DesignInstance spaceInvaders:SpaceInvadersViewModel}">
@@ -23,6 +22,6 @@
         </Grid.RowDefinitions>
         <Button Content="Spiel starten" Click="button_Click" Margin="140,70,130,28" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
         <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Score}" Margin="10,26,4,70"/>
-        <Canvas Background="Black" Grid.Row="1" Grid.Column="1" x:Name="PlayArea" Loaded="PlayArea_OnLoaded" Focusable="True" />
+        <Canvas Background="Black" Grid.Row="1" Grid.Column="1" x:Name="PlayArea" Focusable="True" />
     </Grid>
 </Window>
