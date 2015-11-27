@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("DieBieneWelcheFliegenWollte")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Licence Owner")]
+[assembly: AssemblyCompany("Pascal Honegger")]
 [assembly: AssemblyProduct("DieBieneWelcheFliegenWollte")]
-[assembly: AssemblyCopyright("Copyright © Licence Owner 2015")]
+[assembly: AssemblyCopyright("Copyright © Pascal Honegger 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -53,3 +53,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("de")]
+

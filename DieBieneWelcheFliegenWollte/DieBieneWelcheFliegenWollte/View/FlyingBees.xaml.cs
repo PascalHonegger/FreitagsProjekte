@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
@@ -13,9 +14,6 @@ namespace DieBieneWelcheFliegenWollte.View
 		public FlyingBees()
 		{
 			InitializeComponent();
-			// navigationHelper = new NavigationHelper(this);
-			// navigationHelper.LoadState += navigatioHelper_LoadState;
-			// navigationHelper.SaveState += navigatioHelper_SaveState;
 
 			var imageNames = new List<string>
 			{
@@ -27,6 +25,17 @@ namespace DieBieneWelcheFliegenWollte.View
 			FirstBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(50));
 			SecondBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(10));
 			ThirdBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(100));
+
+			var storyboard = new Storyboard();
+			var animation = new DoubleAnimation();
+			Storyboard.SetTarget(animation, FirstBee);
+			Storyboard.SetTargetProperty(animation, new PropertyPath(Canvas.LeftProperty));
+			animation.From = 50;
+			animation.To = 450;
+			animation.Duration = TimeSpan.FromSeconds(3);
+			animation.RepeatBehavior = RepeatBehavior.Forever;
+			animation.AutoReverse = true;
+			storyboard.Begin();
 		}
 	}
 }

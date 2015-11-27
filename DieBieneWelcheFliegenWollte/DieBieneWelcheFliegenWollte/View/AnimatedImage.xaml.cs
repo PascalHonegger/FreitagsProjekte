@@ -49,7 +49,16 @@ namespace DieBieneWelcheFliegenWollte.View
 
 		private static BitmapImage CreateImageFromAssets(string imageName)
 		{
-			return new BitmapImage(new Uri("ms-appx:///Assets/" + imageName));
+			try
+			{
+				var uri = new Uri(imageName, UriKind.RelativeOrAbsolute);
+				return new BitmapImage(uri);
+
+			}
+			catch (System.IO.IOException)
+			{
+				return new BitmapImage();
+			}
 		}
 	}
 }
