@@ -96,8 +96,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\bienezwei.png" />
-    <Resource Include="Ressources\bineneis.png" />
+    <Resource Include="Ressources\biene1.png" />
+    <Resource Include="Ressources\biene2.png" />
+    <Resource Include="Ressources\biene3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
