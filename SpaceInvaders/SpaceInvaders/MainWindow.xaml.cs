@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SpaceInvaders
@@ -40,15 +41,19 @@ namespace SpaceInvaders
 
 		private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
 		{
-			UpdatePlayAreaSize(new Size(e.NewSize.Width, e.NewSize.Height - 160));
+			var i = 1;
+			//throw new NotImplementedException();
+			//UpdatePlayAreaSize(new Size(e.NewSize.Width, e.NewSize.Height - 160));
 		}
 
 		private void PlayArea_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			UpdatePlayAreaSize(PlayArea.RenderSize);
+			var i = 1;
+			//throw new NotImplementedException();
+			//UpdatePlayAreaSize(PlayArea.RenderSize);
 		}
 
-		private void UpdatePlayAreaSize(Size newPlayAreaSize)
+		/*	private void UpdatePlayAreaSize(Size newPlayAreaSize)
 		{
 			double targetWidth;
 			double targetHeight;
@@ -69,6 +74,6 @@ namespace SpaceInvaders
 			PlayArea.Width = targetWidth;
 			PlayArea.Height = targetHeight;
 			ViewModel.PlayAreaSize = new Size(targetWidth, targetHeight);
-		}
+		}*/
 	}
 }
