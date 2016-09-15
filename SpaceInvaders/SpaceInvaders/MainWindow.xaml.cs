@@ -13,8 +13,10 @@ namespace SpaceInvaders
 		{
 			InitializeComponent();
 			DataContext = new SpaceInvadersViewModel();
-		}
 
+
+		}
+		
 		private SpaceInvadersViewModel ViewModel => DataContext as SpaceInvadersViewModel;
 		private SpaceInvadersModel Model => (DataContext as SpaceInvadersViewModel)?.Model;
 

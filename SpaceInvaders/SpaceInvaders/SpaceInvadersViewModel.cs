@@ -35,6 +35,8 @@ namespace SpaceInvaders
 
 		public INotifyCollectionChanged Lives => _lives;
 
+		public int Score => Model.Score;
+
 		public bool Paused { get; set; }
 
 		public static double Scale { get; private set; }

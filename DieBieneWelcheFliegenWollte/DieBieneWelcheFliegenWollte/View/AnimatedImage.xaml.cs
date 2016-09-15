@@ -1,34 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Resources;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
 namespace DieBieneWelcheFliegenWollte.View
 {
 	/// <summary>
-	/// Interaction logic for AnimatedImage.xaml
+	///     Interaction logic for AnimatedImage.xaml
 	/// </summary>
 	public partial class AnimatedImage
 	{
+		private readonly Dictionary<string, ImageBrush> _cachedImages = new Dictionary<string, ImageBrush>();
+		private readonly MediaPlayer _player = new MediaPlayer();
+
 		public AnimatedImage()
 		{
 			InitializeComponent();
 		}
 
-		public AnimatedImage(IEnumerable<string> imageNames, TimeSpan interval) : this()
+		public AnimatedImage(int width, int heigth) : this()
 		{
-			StartAnimation(imageNames, interval);
+			Width = width;
+			Height = heigth;
 		}
 
-		public void StartAnimation(IEnumerable<string> imageNames, TimeSpan interval)
+		public void PlaySummSummSumm()
 		{
-			var storyboard = new Storyboard();
+			_player.Open(new Uri("Resources/summen.mp3", UriKind.Relative));
+			_player.Play();
+
+			_player.MediaEnded += (sender, args) => _player.Play();
+		}
+
+		public void AnimateImage(IEnumerable<string> imageNames, TimeSpan interval)
+		{
+			var storyboard = new Storyboard
+			{
+				RepeatBehavior = RepeatBehavior.Forever
+			};
+
 			var animation = new ObjectAnimationUsingKeyFrames();
-			Storyboard.SetTarget(animation, Image);
-			Storyboard.SetTargetProperty(animation, new PropertyPath("Source"));
+			Storyboard.SetTarget(animation, this);
+			Storyboard.SetTargetProperty(animation, new PropertyPath("Background"));
 
 			var currentInterval = TimeSpan.FromMilliseconds(0);
 			foreach (var imageName in imageNames)
@@ -41,22 +57,61 @@ namespace DieBieneWelcheFliegenWollte.View
 				animation.KeyFrames.Add(keyFrame);
 				currentInterval = currentInterval.Add(interval);
 			}
-			storyboard.RepeatBehavior = RepeatBehavior.Forever;
-			storyboard.AutoReverse = true;
+
 			storyboard.Children.Add(animation);
+
 			storyboard.Begin();
 		}
 
-		private static BitmapImage CreateImageFromAssets(string imageFileName)
+		public void MoveImage(TimeSpan interval, PathGeometry beeFlyHerePath)
+		{
+			var storyboard = new Storyboard
+			{
+				RepeatBehavior = RepeatBehavior.Forever
+			};
+
+			var moveCircleAnimation = new DoubleAnimationUsingPath
+			{
+				PathGeometry = beeFlyHerePath,
+				Source = PathAnimationSource.X,
+				Duration = interval
+			};
+
+			Storyboard.SetTarget(moveCircleAnimation, this);
+			Storyboard.SetTargetProperty(moveCircleAnimation, new PropertyPath("(Canvas.Left)"));
+
+			var moveCircleAnimation2 = new DoubleAnimationUsingPath
+			{
+				PathGeometry = beeFlyHerePath,
+				Source = PathAnimationSource.Y,
+				Duration = interval
+			};
+
+			Storyboard.SetTarget(moveCircleAnimation2, this);
+			Storyboard.SetTargetProperty(moveCircleAnimation2, new PropertyPath("(Canvas.Top)"));
+
+			storyboard.Children.Add(moveCircleAnimation);
+			storyboard.Children.Add(moveCircleAnimation2);
+
+			storyboard.Begin();
+		}
+
+		private ImageBrush CreateImageFromAssets(string imageFileName)
 		{
 			try
 			{
-				var uri = new Uri("pack://application:,,,/View/" + imageFileName, UriKind.RelativeOrAbsolute);
-				return new BitmapImage(uri);
+				if (_cachedImages.ContainsKey(imageFileName))
+					return _cachedImages[imageFileName];
+
+
+				var uri = new Uri("Resources/" + imageFileName, UriKind.Relative);
+				var newBrush = new ImageBrush(new BitmapImage(uri));
+				_cachedImages.Add(imageFileName, newBrush);
+				return newBrush;
 			}
-			catch (System.IO.IOException)
+			catch (IOException)
 			{
-				return new BitmapImage();
+				return new ImageBrush(new BitmapImage());
 			}
 		}
 	}

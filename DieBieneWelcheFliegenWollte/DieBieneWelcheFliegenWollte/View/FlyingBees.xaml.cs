@@ -1,43 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
-using JetBrains.dotMemoryUnit;
+using System.Windows.Input;
 
 namespace DieBieneWelcheFliegenWollte.View
 {
 	/// <summary>
-	/// Interaction logic for FlyingBees.xaml
+	///     Interaction logic for FlyingBees.xaml
 	/// </summary>
 	public partial class FlyingBees
 	{
+		private readonly FlyingBeesViewModel _viewModel;
+
 		public FlyingBees()
 		{
 			InitializeComponent();
 
-			var imageNames = new List<string>
-			{
-				"biene1.png",
-				"biene2.png",
-				"biene3.png"
-			};
+			DataContext = _viewModel = new FlyingBeesViewModel(BeeNest, BeeFlyHerePath);
 
-			FirstBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(500));
-			SecondBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(20));
-			ThirdBee.StartAnimation(imageNames, TimeSpan.FromMilliseconds(200));
+			_viewModel.AnimateBee(AddBee);
+		}
 
-			var storyboard = new Storyboard();
-			var animation = new DoubleAnimation();
-			Storyboard.SetTarget(animation, FirstBee);
-			Storyboard.SetTargetProperty(animation, new PropertyPath(Canvas.LeftProperty));
-			animation.From = 50;
-			animation.To = 450;
-			animation.Duration = TimeSpan.FromSeconds(3);
-			animation.RepeatBehavior = RepeatBehavior.Forever;
-			animation.AutoReverse = true;
-			storyboard.Children.Add(animation);
-			storyboard.Begin();
+		private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+		{
+			await _viewModel.AddRandomBee();
+		}
+
+		private readonly Random _random = new Random();
+
+		private void UIElement_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+		{
+			RandomlyPlaceButton((Button)sender);
+		}
+
+		private void RandomlyPlaceButton(Button button)
+		{
+			Canvas.SetTop(button, _random.Next(0, 700));
+			Canvas.SetLeft(button, _random.Next(100, 1000));
 		}
 	}
 }
